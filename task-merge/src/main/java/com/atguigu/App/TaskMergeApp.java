@@ -24,7 +24,7 @@ public class TaskMergeApp {
 
         //创建sparksession链接
 
-        SparkConf conf = new SparkConf().setAppName("TaskMergeApp").setMaster("local[*]");
+        SparkConf conf = new SparkConf().setAppName("TaskMergeApp");//.setMaster("local[*]");
 
         SparkSession sparkSession = SparkSession.builder().config(conf).enableHiveSupport().getOrCreate();
 
@@ -54,7 +54,7 @@ public class TaskMergeApp {
 
         List<String> values1 = tagInfos.stream().map(taginfo -> taginfo.getTagCode().toLowerCase()).collect(Collectors.toList());
 
-        String value1 = StringUtils.join(values1, ",");
+        String value1 = StringUtils.join(values1, "','");
 
         String tableValue = StringUtils.join(values, ",");
 
@@ -78,7 +78,7 @@ public class TaskMergeApp {
                 "uid String,"+tableValue+") ROW FORMAT DELIMITED FIELDS TERMINATED BY '\\t'" +
                 " location '"+hdfsPath+"/"+upDbname+"/"+tableName+"'";
 
-
+        //System.out.println(createSql);
         //拼接查询sql
 
         /**
@@ -87,7 +87,7 @@ public class TaskMergeApp {
 
         String selectSql = "select * from ("+unionSql+") pivot ( max(tag_value) as tag_value for tag_code in('"+value1+"'))";
 
-        System.out.println(selectSql);
+        //System.out.println(selectSql);
         //插入数据
 
         String insertSql = "insert overwrite table "+tableName+" "+selectSql+"";

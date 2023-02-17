@@ -28,7 +28,7 @@ public class TaskClickhouseOutApp {
 
         //saprksession 链接获取
 
-        SparkConf conf = new SparkConf().setAppName("TaskClickhouseOut").setMaster("local[*]");
+        SparkConf conf = new SparkConf().setAppName("TaskClickhouseOut");//.setMaster("local[*]");
 
         SparkSession sparkSession = SparkSession.builder().config(conf).enableHiveSupport().getOrCreate();
 
