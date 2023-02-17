@@ -11,6 +11,8 @@
     <modules>
         <module>task-common</module>
         <module>task-sql</module>
+        <module>task-merge</module>
+        <module>task-clickhouse-out</module>
     </modules>
 
     <properties>
