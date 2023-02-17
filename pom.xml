@@ -13,6 +13,7 @@
         <module>task-sql</module>
         <module>task-merge</module>
         <module>task-clickhouse-out</module>
+        <module>task-bigmapclickhouse</module>
     </modules>
 
     <properties>
